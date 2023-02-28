@@ -28,7 +28,7 @@ function Login() {
 		})
 	}
 
-useEffect(() => {
+	useEffect(() => {
 		Axios.get('https://todoserver.herokuapp.com/login',{
 			email: EmailCheck,
 			hashpassword: pwdCheck,
