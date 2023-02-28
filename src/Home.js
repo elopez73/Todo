@@ -3,7 +3,9 @@ function Home() {
 
     return (
         <div>
-           <Status/>
+            <Status />
+            <h1>Create a Todo Checklist. Start by registering an Logging in.</h1>
+
         </div>
     )
 }

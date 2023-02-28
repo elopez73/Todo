@@ -1,31 +1,21 @@
-
-import { Routes, Route, useLocation } from "react-router-dom";
-import Naviagtion from "./nav/Navigation";
+import {  Route, Routes } from "react-router-dom";
+import NavBar from "./nav/Navbar";
 import Login from "./Login";
 import Home from "./Home";
-
 import "./App.css";
-
-
-
 
 function App() {
 
-	const location =useLocation();
+	return (<div>
+		<NavBar/>
+		<Routes>
+					<Route path="/" element={<Home/> } />
+					<Route path="/login" element={ <Login/>} />
+		</Routes>
 
-
-	return (
-
-		<div>
-
-			<Naviagtion/>
-			<Routes  key={location.pathname} location={location}>
-			<Route path="/" element={<Home />} />
-				<Route path="/login" element={<Login />} />
-
-			</Routes>
 
 		</div>
+
 	);
 }
 
