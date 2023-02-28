@@ -1,0 +1,50 @@
+body {
+	background-color: #7c7d86;
+	margin: 0;
+	padding: 0;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	width: 100%;
+	font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.signup{
+
+	justify-content: center;
+	align-items: center;
+	background-color: beige;
+	box-shadow: rgba(0, 0, 0, 0.05);
+	border-radius: 10px;
+	padding: 10px;
+
+	margin-top: 50px;
+}
+.login{
+	margin: 0;
+	justify-content: center;
+	align-items: center;
+	background-color: #4b5960;
+	border-radius: 20px;
+	box-sizing: border-box;
+	height: 30%;
+	padding: 20px;
+
+}
+.button-container {
+	display: flex;
+	align-items: center;
+}
+.button-container button {
+	margin: 0 5px;
+	padding: 5px 10px;
+	border-radius: 12px;
+	background-color: transparent;
+}
+.current{
+	position: absolute;
+	display: flex;
+  top: 8px;
+  left: 16px;
+  font-size: 18px;
+}
