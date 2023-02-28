@@ -28,17 +28,7 @@ function Login() {
 		})
 	}
 
-	useEffect(() => {
-		Axios.get('https://todoserver.herokuapp.com/login',{
-			email: EmailCheck,
-			hashpassword: pwdCheck,
-		}).then((response) => {
-			if (response.data.loggedIn === true) {
-				setLoginStatus(response.data.user[0].email)
-			}
-
-		});
-	}, [])
+	
 
 	const [show, setshow] = useState(false);
 
