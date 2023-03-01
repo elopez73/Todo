@@ -8,14 +8,14 @@ function Login() {
 	Axios.defaults.withCredentials = true;
 
 	const register = () => {
-		Axios.post(process.env.API, { email: EmailReg, hashpassword: pwdReg, }).then((response) => {
+		Axios.post('https://todoserver.herokuapp.com/register', { email: EmailReg, hashpassword: pwdReg, }).then((response) => {
 			console.log(response);
 		})
 	}
 	const [loginStatus, setLoginStatus] = useState('');
 
 	const login = () => {
-		Axios.post(process.env.API+ '/login', {
+		Axios.post('https://todoserver.herokuapp.com/login', {
 			email: EmailCheck,
 			hashpassword: pwdCheck,
 		}).then((response) => {
@@ -29,7 +29,7 @@ function Login() {
 	}
 
 	useEffect(() => {
-		Axios.get(process.env.API + '/login').then((response) => {
+		Axios.get('https://todoserver.herokuapp.com/login').then((response) => {
 			if (response.data.loggedIn === true) {
 				setLoginStatus(response.data.user[0].email)
 			}
