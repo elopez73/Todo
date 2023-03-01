@@ -7,7 +7,7 @@ function Status() {
 
     const [loginStatus, setLoginStatus] = useState('');
 	useEffect(() => {
-		Axios.get('https://todoserver.herokuapp.com/login').then((response) => {
+		Axios.get('https://todoserver.herokuapp.com/check').then((response) => {
 			if (response.data.loggedIn === true) {
 				setLoginStatus(response.data.user[0].email)
 			}
