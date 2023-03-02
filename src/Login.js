@@ -37,8 +37,8 @@ function Login() {
 
 
 			if (response.data.loggedIn === true) {
-				setLoginStatus(response.data.user)
-				console.log(response.data.user);
+				setLoginStatus(response.data.user[0])
+				console.log(response.data.user[0]);
 			}
 
 		});
