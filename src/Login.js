@@ -28,7 +28,8 @@ function Login() {
 				setLoginStatus(response.data.message)
 			} else {
 				setLoginStatus(response.data[0].email)
-				localStorage.setItem('User',response.data[0].email)
+				localStorage.setItem('User', response.data[0].email)
+				localStorage.setItem('ID',response.session)
 			}
 			console.log(response)
 		})
