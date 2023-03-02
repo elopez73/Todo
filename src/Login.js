@@ -16,7 +16,7 @@ function Login() {
 			console.log(response);
 		})
 	}
-	
+
 	//LOGIN
 	const login = () => {
 		Axios.post('https://todoserver.herokuapp.com/login', {
@@ -35,7 +35,7 @@ function Login() {
 	useEffect(() => {
 		Axios.get('https://todoserver.herokuapp.com/login').then((response) => {
 			if (response.data.loggedIn === true) {
-				setLoginStatus(response.data.user[0].email)
+				setLoginStatus(response.data[0].email)
 			}
 
 		});
