@@ -1,12 +1,23 @@
+import { useState, useEffect } from "react";
+import Axios from "axios";
 
 
+function Status() {
+    const [loginStatus, setLoginStatus] = useState('');
+    useEffect(() => {
+        Axios.get('https://todoserver.herokuapp.com/login').then((response) => {
 
 
-function Status(props) {
+            if (response.data.loggedIn === true) {
+                setLoginStatus(response.data.user)
 
+            }
+
+        });
+    }, [])
 
     return (
-        <h2 className="current">Currently Logged in as: {props.Status}</h2>
+        <h2 className="current">Currently Logged in as: {loginStatus}</h2>
     )
 }
 export default Status;

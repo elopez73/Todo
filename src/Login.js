@@ -32,24 +32,13 @@ function Login() {
 		})
 	}
 
-	useEffect(() => {
-		Axios.get('https://todoserver.herokuapp.com/login').then((response) => {
-
-
-			if (response.data.loggedIn === true) {
-				setLoginStatus(response.data.user)
-
-			}
-
-		});
-	}, [])
 
 	const [show, setshow] = useState(false);
 
 	return (
 
 		<div>
-			<Status Status = {loginStatus}/>
+			<Status/>
 
 			<div className="login">
 				<h2>Login: </h2>
