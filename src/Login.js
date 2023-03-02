@@ -27,6 +27,7 @@ function Login() {
 				setLoginStatus(response.data.message)
 			} else {
 				setLoginStatus(response.data[0].email)
+				localStorage.setItem('User',response.data[0].email)
 			}
 			console.log(response)
 		})
@@ -37,7 +38,7 @@ function Login() {
 
 
 			if (response.data.loggedIn === true) {
-				setLoginStatus(response.data.user)
+				setLoginStatus(response.data[0].email)
 
 			}
 
