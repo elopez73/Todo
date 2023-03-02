@@ -26,9 +26,9 @@ function Login() {
 			if (response.data.message) {
 				setLoginStatus(response.data.message)
 			} else {
-				setLoginStatus(response.data[0].email);
+				setLoginStatus(response.data[0].email)
 			}
-
+			console.log(response);
 		})
 	}
 
@@ -37,8 +37,8 @@ function Login() {
 
 
 			if (response.data.loggedIn === true) {
-				setLoginStatus(response.data.user[0].email)
-				console.log(response.data.user[0].email);
+				setLoginStatus(response.data.user)
+
 			}
 
 		});
