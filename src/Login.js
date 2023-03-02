@@ -13,6 +13,7 @@ function Login() {
 	//REGISTRATION
 	const register = () => {
 		Axios.post('https://todoserver.herokuapp.com/register', { email: EmailReg, hashpassword: pwdReg, }).then((response) => {
+			localStorage.setItem('User',response.data[0].email)
 			console.log(response);
 		})
 	}
@@ -33,24 +34,12 @@ function Login() {
 		})
 	}
 
-	useEffect(() => {
-		Axios.get('https://todoserver.herokuapp.com/login').then((response) => {
-
-
-			if (response.data.loggedIn === true) {
-				setLoginStatus(localStorage.getItem("User"));
-
-			}
-
-		});
-	}, [])
-
 	const [show, setshow] = useState(false);
 
 	return (
 
 		<div>
-			<Status Status = {loginStatus}/>
+			<Status/>
 
 			<div className="login">
 				<h2>Login: </h2>
