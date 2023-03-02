@@ -38,7 +38,7 @@ function Login() {
 
 
 			if (response.data.loggedIn === true) {
-				setLoginStatus(response.data[0].email)
+				setLoginStatus(localStorage.getItem("User"));
 
 			}
 
