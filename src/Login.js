@@ -1,19 +1,23 @@
 import { useState, useEffect } from "react";
 import Axios from "axios";
+import Status from "./components/Status";
+
 function Login() {
 	const [EmailReg, setEmailReg] = useState('');
 	const [pwdReg, setPwdReg] = useState('');
 	const [EmailCheck, setEmailCheck] = useState('');
 	const [pwdCheck, setPwdCheck] = useState('');
+	const [loginStatus, setLoginStatus] = useState('');
 	Axios.defaults.withCredentials = true;
 
+	//REGISTRATION
 	const register = () => {
 		Axios.post('https://todoserver.herokuapp.com/register', { email: EmailReg, hashpassword: pwdReg, }).then((response) => {
 			console.log(response);
 		})
 	}
-	const [loginStatus, setLoginStatus] = useState('');
-
+	
+	//LOGIN
 	const login = () => {
 		Axios.post('https://todoserver.herokuapp.com/login', {
 			email: EmailCheck,
@@ -29,7 +33,7 @@ function Login() {
 	}
 
 	useEffect(() => {
-		Axios.get('https://todoserver.herokuapp.com/').then((response) => {
+		Axios.get('https://todoserver.herokuapp.com/login').then((response) => {
 			if (response.data.loggedIn === true) {
 				setLoginStatus(response.data.user[0].email)
 			}
@@ -42,7 +46,7 @@ function Login() {
 	return (
 
 		<div>
-			<h2 className="current">Currently Logged in as: {loginStatus}</h2>
+			<Status Status = {loginStatus}/>
 
 			<div className="login">
 				<h2>Login: </h2>
