@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import Axios from "axios";
-import Status from "./components/Status";
+
 
 function Login() {
 	const [EmailReg, setEmailReg] = useState('');
@@ -35,12 +35,20 @@ function Login() {
 		})
 	}
 
+	useEffect(() => {
+		Axios.get('https://todoserver.herokuapp.com/login').then((response) => {
+			if (response.data.loggedIn === true) {
+				setLoginStatus(response.data[0].email)
+			}
+
+		});
+	}, [])
 	const [show, setshow] = useState(false);
 
 	return (
 
 		<div>
-			<Status/>
+			<h2 className="current">Currently Logged in as: {loginStatus}</h2>
 
 			<div className="login">
 				<h2>Login: </h2>
