@@ -27,7 +27,8 @@ function Login() {
 			if (response.data.message) {
 				setLoginStatus(response.data.message)
 			} else {
-				setLoginStatus(response.data[0])
+
+				setLoginStatus(response.data[0].email)
 
 			}
 
