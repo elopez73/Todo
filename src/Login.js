@@ -13,7 +13,7 @@ function Login() {
 	//REGISTRATION
 	const register = () => {
 		Axios.post('https://todoserver.herokuapp.com/register', { email: EmailReg, hashpassword: pwdReg, }).then((response) => {
-			localStorage.setItem('User',response.data[0].email)
+
 			console.log(response);
 		})
 	}
@@ -27,8 +27,8 @@ function Login() {
 			if (response.data.message) {
 				setLoginStatus(response.data.message)
 			} else {
-				setLoginStatus(response.data[0].email)
-			
+				setLoginStatus(response.data)
+
 			}
 
 		})
