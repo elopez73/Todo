@@ -4,7 +4,7 @@ function Home() {
     return (
         <div>
             <Status />
-            <h1>Create a Todo Checklist. Start by registering an Logging in.</h1>
+            <h1>Create a Check List</h1>
 
         </div>
     )
