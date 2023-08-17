@@ -1,0 +1,29 @@
+.contain {
+    position: fixed;
+    display: block;
+    width: 100%;
+    top: 0;
+    left: 16px;
+    font-size: 0.7rem;
+}
+
+.button {
+  display: block;
+  margin-bottom: 10px;
+  padding: 8px 16px;
+  border: none;
+  border-radius: 4px;
+  background-color: #007bff;
+  color: #fff;
+  cursor: pointer;
+}
+.button:hover {
+  background-color: #0056b3;
+}
+@media (max-width: 768px) {
+    .contain {
+        position: fixed;
+        width: 100%;
+ /* Change background color if needed */
+    }
+}

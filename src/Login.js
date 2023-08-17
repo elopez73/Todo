@@ -1,82 +1,88 @@
-import { useState, useEffect } from "react";
-import Axios from "axios";
-
+import { useState, useContext } from "react";
+import axios from "axios";
+import { AuthContext } from "./components/AuthContext";
+import './styles/Login.css';
+import { useNavigate } from 'react-router-dom';
+axios.defaults.withCredentials = true;
 
 function Login() {
 	const [EmailReg, setEmailReg] = useState('');
 	const [pwdReg, setPwdReg] = useState('');
 	const [EmailCheck, setEmailCheck] = useState('');
 	const [pwdCheck, setPwdCheck] = useState('');
-	const [loginStatus, setLoginStatus] = useState('');
-	Axios.defaults.withCredentials = true;
+	const { dispatch } = useContext(AuthContext);
+	const navigate = useNavigate();
+	const api = 'http://localhost:3001';
 
-	//REGISTRATION
-	const register = () => {
-		Axios.post('https://todoserver.herokuapp.com/register', { email: EmailReg, hashpassword: pwdReg, }).then((response) => {
+	function handleLogin(loggedIn, user) {
+		dispatch({ type: 'LOGIN', payload: { loggedIn, user } });
+	};
+	const register = async () => {
+		try {
+			const res = await axios.post(`${api}/api/auth/register`, { email: EmailReg, hashpassword: pwdReg, })
+			handleLogin(true, res.data);
+			console.log(res);
+		} catch (err) {
+			console.log(err)
+		}
 
-			console.log(response);
-		})
 	}
 
 	//LOGIN
 	const login = () => {
-		Axios.post('https://todoserver.herokuapp.com/login', {
+		axios.post(`${api}/api/auth/login`, {
 			email: EmailCheck,
-			hashpassword: pwdCheck,
+			password: pwdCheck,
 		}).then((response) => {
 			if (response.data.message) {
-				setLoginStatus(response.data.message)
+				handleLogin(response.data.message)
 			} else {
-
-				setLoginStatus(response.data[0].email)
-				
-
+				handleLogin(true, response.data);
+				navigate("/mylists");
 			}
-
 		})
 	}
+	
 
-	useEffect(() => {
-		Axios.get('https://todoserver.herokuapp.com/login').then((response) => {
-			if (response.data.loggedIn === true) {
-				setLoginStatus(response.data[0].email)
-			}
+	const [show, setShow] = useState(false);
 
-		});
-	}, [])
-	const [show, setshow] = useState(false);
-
-	return (
-
-		<div>
-			<h2 className="current">Currently Logged in as: {loginStatus}</h2>
-
-			<div className="login">
-				<h2>Login: </h2>
-				<label >Email: </label>
-				<input type="text" onChange={(e) => { setEmailCheck(e.target.value) }} />
-				<br />
-				<label >Password: </label>
-				<input type="password" onChange={(e) => { setPwdCheck(e.target.value) }} />
-				<br />
-				<button onClick={login}>Login</button>
-				<br />
-				<p>Need to register?</p>
-				<button onClick={()=>setshow(true)}>Click here</button>
+	return (show ? <div className="auth-container">
+		<div className="login">
+			<h2>Registration</h2>
+			<div className="input">
+				<label>Email</label>
+				<input type="text" onChange={(e) => { setEmailReg(e.target.value) }} />
 			</div>
-			{ show &&
-				<div className="signup">
-					<h2>Registration</h2>
-					<label >Email: </label>
-					<input type="text" onChange={(e) => { setEmailReg(e.target.value) }} />
-					<br />
-					<label >Password: </label>
-					<input type="password" onChange={(e) => { setPwdReg(e.target.value) }} />
-					<br />
-					<button onClick={register}>Register</button>
-				</div>
-			}
+			<div className="input">
+				<label>Password</label>
+				<input type="password" onChange={(e) => { setPwdReg(e.target.value) }} />
+			</div>
+
+
+			<button onClick={register}>Register</button>
+			<p>Already have an account?</p>
+			<button className="signup-button" onClick={() => setShow(false)}>Click here</button>
+
 		</div>
+	</div> :
+		<div className="auth-container">
+			<div className="login">
+				<h2>Login</h2>
+				<div className="input">
+					<label>Email</label>
+					<input type="text" onChange={(e) => { setEmailCheck(e.target.value) }} />
+				</div>
+				<div className="input">
+					<label>Password</label>
+					<input type="password" onChange={(e) => { setPwdCheck(e.target.value) }} />
+				</div>
+				<button onClick={login}>Login</button>
+				<p>Need to register?</p>
+				<button className="signup-button" onClick={() => setShow(true)}>Click here</button>
+			</div>
+		</div>
+
+
 
 
 	);

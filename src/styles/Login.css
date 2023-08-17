@@ -1,0 +1,97 @@
+/* AuthFormStyles.css */
+
+/* Google Fonts - Poppins */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap');
+
+
+.auth-container {
+    height: 100%;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #4070f4;
+    column-gap: 30px;
+}
+
+.login {
+    align-items: center;
+    justify-content: center;
+    max-width: 100%;
+    width: 100%;
+    padding: 30px;
+    border-radius: 6px;
+    background: #FFF;
+    color: #232836;
+}
+
+.login h2 {
+    font-size: 28px;
+    font-weight: 600;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.input {
+    position: relative;
+    margin-top: 20px;
+}
+
+.input label {
+    font-size: 16px;
+    font-weight: 400;
+}
+
+.input input {
+    height: 100%;
+    width: 100%;
+    border: none;
+    font-size: 16px;
+    font-weight: 400;
+    border-radius: 6px;
+    outline: none;
+    border: 1px solid #CACACA;
+    transition: border-color 0.2s;
+}
+
+
+.login button {
+    display: block;
+    width: 100%;
+    padding: 10px;
+    margin-top: 20px;
+    color: #fff;
+    background-color: #0171d3;
+    border: none;
+    border-radius: 6px;
+    font-size: 18px;
+    font-weight: 500;
+    text-align: center;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+
+
+.login p {
+    text-align: center;
+    margin-top: 20px;
+    color: #232836;
+    font-size: 14px;
+}
+
+.login .signup-button {
+    display: block;
+    width: 100%;
+    padding: 10px;
+    margin-top: 10px;
+    color: #fff;
+    background-color: #232836;
+    border: none;
+    border-radius: 6px;
+    font-size: 16px;
+    font-weight: 500;
+    text-align: center;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}

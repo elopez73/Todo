@@ -1,21 +1,52 @@
-import { useState, useEffect } from "react";
-import Axios from "axios";
+import { useContext, useEffect } from "react";
+import axios from "axios";
+import { AuthContext } from "./AuthContext";
+import { useNavigate } from "react-router-dom";
+import styles from '../styles/Status.module.css';
+
+const api = 'http://localhost:3001';
+
+function handleLogin(dispatch, user) {
+
+	dispatch({ type: 'LOGIN', payload: user });
+};
+async function handleLogOut(dispatch) {
+
+	await dispatch({ type: 'LOGOUT' });
+};
 
 
 
 function Status() {
-
-    const [loginStatus, setLoginStatus] = useState('');
-	useEffect(() => {
-		Axios.get('https://todoserver.herokuapp.com/login').then((response) => {
-			if (response.data.loggedIn === true) {
-				setLoginStatus(response.data[0].email)
+	const navigate = useNavigate();
+	const { user, dispatch } = useContext(AuthContext);
+	const logOut = () => {
+		axios.post(`${api}/api/auth/logout`).then((response) => {
+			if (response.data.message) {
+				handleLogOut(dispatch);
+				navigate("/");
 			}
+		})
+	}
 
-		});
-	}, [])
-    return (
-        <h2 className="current">Currently Logged in as: {loginStatus}</h2>
-    )
+	useEffect(() => {
+		if (user === null)
+			axios.get(`${api}/api/auth/login`).then((response) => {
+
+				if (response.data.loggedIn === true) {
+					handleLogin(dispatch, response.data);
+					navigate("/mylists");
+				}
+			});
+	}, [dispatch, user, navigate]);
+
+	return (<div className={styles.contain}>
+		<h2>Currently Logged in as: {user?.email}</h2>
+		<button className={styles.button} onClick={logOut}>Log Out</button>
+
+
+	</div>
+
+	)
 }
 export default Status;
