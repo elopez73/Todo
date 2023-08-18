@@ -4,7 +4,6 @@ import { AuthContext } from "./AuthContext";
 import { useNavigate } from "react-router-dom";
 import styles from '../styles/Status.module.css';
 
-const api = 'http://localhost:3001';
 
 function handleLogin(dispatch, user) {
 
@@ -18,13 +17,13 @@ async function handleLogOut(dispatch) {
 
 
 function Status() {
+	const api = 'https://boxscoreapi-263655f53c81.herokuapp.com';
 	const navigate = useNavigate();
 	const { user, dispatch } = useContext(AuthContext);
 	const logOut = () => {
 		axios.post(`${api}/api/auth/logout`).then((response) => {
 			if (response.data.message) {
 				handleLogOut(dispatch);
-				navigate("/");
 			}
 		})
 	}
@@ -35,13 +34,12 @@ function Status() {
 
 				if (response.data.loggedIn === true) {
 					handleLogin(dispatch, response.data);
-					navigate("/mylists");
 				}
 			});
-	}, [dispatch, user, navigate]);
+	}, [dispatch, user, navigate, api]);
 
 	return (<div className={styles.contain}>
-		<h2>Currently Logged in as: {user?.email}</h2>
+		<h2>Logged in as: {user?.email}</h2>
 		<button className={styles.button} onClick={logOut}>Log Out</button>
 
 

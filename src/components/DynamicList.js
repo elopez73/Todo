@@ -10,7 +10,7 @@ const DynamicList = () => {
     const [selectedListIndex, setSelectedListIndex] = useState(-1);
     const { user } = useContext(AuthContext);
     const id = user?.id;
-    const api = 'http://localhost:3001';
+    const api = 'https://boxscoreapi-263655f53c81.herokuapp.com';
     const clearList = () => {
         setTitle('');
         setItems([]);
@@ -45,7 +45,6 @@ const DynamicList = () => {
             if (response) {
                 fetchSavedLists();
             }
-
         } catch (error) {
             console.error('Error saving list:', error);
         }
@@ -76,10 +75,11 @@ const DynamicList = () => {
         } catch (error) {
             console.error('Error fetching saved lists:', error);
         }
-    }, [id]);
+    }, [id,api]);
     useEffect(() => {
         if (id) fetchSavedLists();
     }, [fetchSavedLists, id]);
+
     const loadList = (index) => {
         setSelectedListIndex(index);
         setTitle(savedLists[index].list_name);

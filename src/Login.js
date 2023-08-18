@@ -12,16 +12,16 @@ function Login() {
 	const [pwdCheck, setPwdCheck] = useState('');
 	const { dispatch } = useContext(AuthContext);
 	const navigate = useNavigate();
-	const api = 'http://localhost:3001';
+	const api = 'https://boxscoreapi-263655f53c81.herokuapp.com';
 
 	function handleLogin(loggedIn, user) {
 		dispatch({ type: 'LOGIN', payload: { loggedIn, user } });
 	};
 	const register = async () => {
+
 		try {
 			const res = await axios.post(`${api}/api/auth/register`, { email: EmailReg, hashpassword: pwdReg, })
 			handleLogin(true, res.data);
-			console.log(res);
 		} catch (err) {
 			console.log(err)
 		}
@@ -29,8 +29,9 @@ function Login() {
 	}
 
 	//LOGIN
-	const login = () => {
-		axios.post(`${api}/api/auth/login`, {
+	const login = async() => {
+
+		await axios.post(`${api}/api/auth/login`, {
 			email: EmailCheck,
 			password: pwdCheck,
 		}).then((response) => {
@@ -42,7 +43,7 @@ function Login() {
 			}
 		})
 	}
-	
+
 
 	const [show, setShow] = useState(false);
 

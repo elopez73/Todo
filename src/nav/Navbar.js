@@ -1,7 +1,6 @@
 
 import { Link, useNavigate } from "react-router-dom";
 import classes from './Nav.module.css';
-import Status from "../components/Status";
 import { AuthContext } from "../components/AuthContext";
 import { useContext, useEffect } from "react";
 function NavBar() {
@@ -9,12 +8,12 @@ function NavBar() {
 	const navigate = useNavigate();
 	useEffect(() => {
 		if (!loggedIn && window.location.pathname === "/mylists") {
-			navigate("/");
+			navigate("/#");
 		}
 	}, [loggedIn, navigate]);
 	return (
 		<header className={classes.navBar}>
-			<Status />
+
 			<div className={classes.dropdown}>
 				<button className={classes.dropbtn}>Menu</button>
 				<nav>
@@ -22,7 +21,7 @@ function NavBar() {
 
 						<ul>
 							<li>
-								<Link to="/">Home</Link>
+								<Link to="/#">Home</Link>
 							</li>
 							{!loggedIn ? <li> <Link to="/login">Login</Link> </li> : <li><Link to="/mylists">Mylists</Link>
 							</li>}
