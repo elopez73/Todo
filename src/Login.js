@@ -34,7 +34,7 @@ function Login() {
 		await axios.post(`${api}/api/auth/login`, {
 			email: EmailCheck,
 			password: pwdCheck,
-		}).then((response) => {
+		}, { withCredentials: true }).then((response) => {
 			if (response.data.message) {
 				handleLogin(response.data.message)
 			} else {
