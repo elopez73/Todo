@@ -10,7 +10,7 @@ const DynamicList = () => {
     const [selectedListIndex, setSelectedListIndex] = useState(-1);
     const { user } = useContext(AuthContext);
     const id = user?.id;
-    const api = 'https://boxscoreapi-263655f53c81.herokuapp.com';
+    const api = process.env.REACT_APP_API_SITE;
     const clearList = () => {
         setTitle('');
         setItems([]);

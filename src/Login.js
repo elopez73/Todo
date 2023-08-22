@@ -12,7 +12,7 @@ function Login() {
 	const [pwdCheck, setPwdCheck] = useState('');
 	const { dispatch } = useContext(AuthContext);
 	const navigate = useNavigate();
-	const api = 'https://boxscoreapi-263655f53c81.herokuapp.com';
+	const api = process.env.REACT_APP_API_SITE;
 
 	function handleLogin(loggedIn, user) {
 		dispatch({ type: 'LOGIN', payload: { loggedIn, user } });
@@ -39,10 +39,8 @@ function Login() {
 				handleLogin(response.data.message)
 			} else {
 				handleLogin(true, response.data.user);
-				console.log(JSON.stringify(response.data.user[0]));
 				sessionStorage.setItem("loggedIn", true);
 				sessionStorage.setItem("user", JSON.stringify(response.data.user[0]));
-
 				navigate("/mylists");
 			}
 		})

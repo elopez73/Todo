@@ -14,9 +14,9 @@ async function handleLogOut(dispatch) {
 
 
 function Status() {
-	const api = 'https://boxscoreapi-263655f53c81.herokuapp.com';
+	const api = process.env.REACT_APP_API_SITE;
 	const { user, dispatch } = useContext(AuthContext);
-	
+
 	const logOut = () => {
 		axios.post(`${api}/api/auth/${user?.email}/logout`).then((response) => {
 			if (response.data.message) {
