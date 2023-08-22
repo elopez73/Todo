@@ -40,8 +40,8 @@ function Login() {
 			} else {
 				handleLogin(true, response.data.user);
 				sessionStorage.setItem("loggedIn", true);
-				sessionStorage.setItem("user", response.data.user);
-				
+				sessionStorage.setItem("user", response.data.user[0]);
+
 				navigate("/mylists");
 			}
 		})
