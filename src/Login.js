@@ -41,6 +41,7 @@ function Login() {
 				handleLogin(true, response.data.user);
 				sessionStorage.setItem("loggedIn", true);
 				sessionStorage.setItem("user", response.data.user);
+				
 				navigate("/mylists");
 			}
 		})
