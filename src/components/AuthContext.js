@@ -15,9 +15,9 @@ export const authReducer = (state, action) => {
 
 export const AuthContextProvider = ({children }) => {
     const [state, dispatch] = useReducer(authReducer, {
-        loggedIn: sessionStorage.getItem("loggedIn"),
-        user: sessionStorage.getItem("user")
-    })
+        loggedIn: JSON.parse(sessionStorage.getItem("loggedIn")) || false,
+        user: JSON.parse(sessionStorage.getItem("user")) || null
+    });
     return (
         <AuthContext.Provider value ={{...state,dispatch}}>
             {children}
