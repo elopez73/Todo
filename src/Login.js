@@ -39,8 +39,9 @@ function Login() {
 				handleLogin(response.data.message)
 			} else {
 				handleLogin(true, response.data.user);
+				console.log(JSON.stringify(response.data.user[0]));
 				sessionStorage.setItem("loggedIn", true);
-				sessionStorage.setItem("user", response.data.user[0]);
+				sessionStorage.setItem("user", JSON.stringify(response.data.user[0]));
 
 				navigate("/mylists");
 			}
