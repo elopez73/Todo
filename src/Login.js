@@ -12,7 +12,7 @@ function Login() {
 	const [pwdCheck, setPwdCheck] = useState('');
 	const { dispatch } = useContext(AuthContext);
 	const navigate = useNavigate();
-	const api = process.env.API_SITE;
+	const api = process.env.REACT_APP_API_SITE;
 
 	function handleLogin(loggedIn, user) {
 		dispatch({ type: 'LOGIN', payload: { loggedIn, user } });
