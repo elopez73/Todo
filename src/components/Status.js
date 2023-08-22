@@ -14,7 +14,7 @@ async function handleLogOut(dispatch) {
 
 
 function Status() {
-	const api = process.env.REACT_APP_API_SITE;
+	const api = process.env.API_SITE;
 	const { user, dispatch } = useContext(AuthContext);
 
 	const logOut = () => {
