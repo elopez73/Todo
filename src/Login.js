@@ -39,6 +39,8 @@ function Login() {
 				handleLogin(response.data.message)
 			} else {
 				handleLogin(true, response.data.user);
+				localStorage.setItem("loggedIn", true);
+				localStorage.setItem("user", response.data.user);
 				navigate("/mylists");
 			}
 		})
