@@ -31,14 +31,14 @@ function Login() {
 	//LOGIN
 	const login = async() => {
 
-		await axios.post(`${api}/api/auth/login`, {
+		await axios.post(`${api}/api/auth/${EmailCheck}/login`, {
 			email: EmailCheck,
 			password: pwdCheck,
-		}, { withCredentials: true }).then((response) => {
+		}).then((response) => {
 			if (response.data.message) {
 				handleLogin(response.data.message)
 			} else {
-				handleLogin(true, response.data);
+				handleLogin(true, response.data.user);
 				navigate("/mylists");
 			}
 		})
