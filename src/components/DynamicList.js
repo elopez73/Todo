@@ -99,7 +99,7 @@ const DynamicList = () => {
             <button onClick={() => deleteList(selectedListIndex)} className={styles.button}>Delete List</button>
             <div className={styles.content}>
                 <div className={styles.sidebar}>
-                    <h3>Saved Lists:</h3>
+                    <h3>Lists</h3>
                     <ul className={styles.savedList}>
                         {savedLists.map((list, index) => (
                             <li
@@ -127,8 +127,8 @@ const DynamicList = () => {
                 </div>
 
                 <div className={`${styles.listWrapper} ${isSavedListSelected ? styles.sideWrapper : ''}`}>
-                    <button onClick={() => saveList(title, items, id, selectedListIndex)} className={styles.button}>Save List</button>
-                    <button onClick={clearList} className={styles.button}>Clear List</button>
+                    <button onClick={() => saveList(title, items, id, selectedListIndex)} className={styles.button}>Save</button>
+                    <button onClick={clearList} className={styles.button}>Clear</button>
                     <div className={styles.header}>
                         <input
                             type="text"

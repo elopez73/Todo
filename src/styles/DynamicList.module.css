@@ -78,7 +78,7 @@
   margin-bottom: 2vw;
   color: white;
 }
-.savedList:hover {
+.sidebar .savedList:hover {
   text-decoration: underline;
 }
 .savedListItem {
@@ -89,9 +89,8 @@
   align-items: center;
 }
 
-
-
 .savedSubList {
+  text-decoration: none;
   list-style: none;
   margin: 0;
   padding-left: 20px;
