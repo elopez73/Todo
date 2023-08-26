@@ -112,7 +112,7 @@ const DynamicList = () => {
                                     <ul className={styles.savedSubList}>
                                         {list.items.map((item, itemIndex) => (
                                             <li key={itemIndex} className={styles.savedSubListItem}>
-                                                {item?.item_name}
+                                                {item}
                                             </li>
                                         ))}
                                     </ul>
@@ -151,7 +151,7 @@ const DynamicList = () => {
                     <ul className={styles.list}>
                         {items.map((item, index) => (
                             <li key={index} className={styles.listItem}>
-                                {item?.item_name}
+                                {item}
                                 <button className={styles.button} onClick={() => removeItem(index)}>Remove</button>
                             </li>
                         ))}
