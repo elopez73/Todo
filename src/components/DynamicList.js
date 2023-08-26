@@ -84,8 +84,7 @@ const DynamicList = () => {
         setSelectedListIndex(index);
         setTitle(savedLists[index].list_name);
         setItems(savedLists[index].items);
-        console.log(savedLists[index].items);
-        console.log(savedLists[index].items?.item_name);
+        console.log(savedLists[index].items?.item_text);
     };
 
     const isSavedListSelected = selectedListIndex !== -1;
@@ -113,8 +112,8 @@ const DynamicList = () => {
                                     <ul className={styles.savedSubList}>
                                         {list.items.map((item, itemIndex) => (
                                             <li key={itemIndex} className={styles.savedSubListItem}>
-                                                {item}
-
+                                                {item?.item_text}
+                                                {item?.item_complete}
                                             </li>
                                         ))}
                                     </ul>
@@ -153,7 +152,8 @@ const DynamicList = () => {
                     <ul className={styles.list}>
                         {items.map((item, index) => (
                             <li key={index} className={styles.listItem}>
-                                {item}
+                                {item?.item_text}
+                                {item?.item_complete}
                                 <button className={styles.button} onClick={() => removeItem(index)}>Remove</button>
                             </li>
                         ))}
