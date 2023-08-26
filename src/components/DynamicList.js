@@ -112,8 +112,11 @@ const DynamicList = () => {
                                     <ul className={styles.savedSubList}>
                                         {list.items.map((item, itemIndex) => (
                                             <li key={itemIndex} className={styles.savedSubListItem}>
-                                                {item?.item_text}
-                                                {item?.item_complete}
+                                            {item?.item_text}
+                                                <input
+                                                    type="checkbox"
+                                                    checked={item?.item_complete === 1}
+                                                />
                                             </li>
                                         ))}
                                     </ul>
@@ -153,7 +156,6 @@ const DynamicList = () => {
                         {items.map((item, index) => (
                             <li key={index} className={styles.listItem}>
                                 {item?.item_text}
-                                {item?.item_complete}
                                 <button className={styles.button} onClick={() => removeItem(index)}>Remove</button>
                             </li>
                         ))}
