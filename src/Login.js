@@ -22,6 +22,7 @@ function Login() {
 		try {
 			const res = await axios.post(`${api}/api/auth/register`, { email: EmailReg, hashpassword: pwdReg, })
 			handleLogin(true, res.data);
+			console.log(res.data);
 		} catch (err) {
 			console.log(err)
 		}
