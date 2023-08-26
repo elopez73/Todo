@@ -87,7 +87,7 @@
   align-items: center;
 }
 
-.savedListItem:hover {
+.savedListItem ul:hover {
   text-decoration: underline;
 }
 
