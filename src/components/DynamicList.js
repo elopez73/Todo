@@ -75,7 +75,7 @@ const DynamicList = () => {
         } catch (error) {
             console.error('Error fetching saved lists:', error);
         }
-    }, [id,api]);
+    }, [id, api]);
     useEffect(() => {
         if (id) fetchSavedLists();
     }, [fetchSavedLists, id]);
@@ -84,6 +84,7 @@ const DynamicList = () => {
         setSelectedListIndex(index);
         setTitle(savedLists[index].list_name);
         setItems(savedLists[index].items);
+        console.log(savedLists[index]);
     };
 
     const isSavedListSelected = selectedListIndex !== -1;
