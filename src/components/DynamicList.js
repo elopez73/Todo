@@ -84,7 +84,7 @@ const DynamicList = () => {
         setSelectedListIndex(index);
         setTitle(savedLists[index].list_name);
         setItems(savedLists[index].items);
-        console.log(savedLists[index]);
+        console.log(savedLists[index].items);
     };
 
     const isSavedListSelected = selectedListIndex !== -1;
