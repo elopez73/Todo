@@ -23,6 +23,7 @@ function Login() {
 			const res = await axios.post(`${api}/api/auth/register`, { email: EmailReg, hashpassword: pwdReg, })
 			if(res.data)
 			{
+				console.log(res.data)
 				try {
 					await axios.post(`${api}/api/auth/${EmailCheck}/login`, {
 						email: EmailCheck,
