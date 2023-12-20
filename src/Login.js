@@ -13,21 +13,7 @@ function Login() {
 	const { dispatch } = useContext(AuthContext);
 	const navigate = useNavigate();
 	const api = process.env.REACT_APP_API_SITE;
-	const [isEmailValid, setIsEmailValid] = useState(false);
-	const [isPasswordValid, setIsPasswordValid] = useState(false);
 
-	const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/; // Simple email regex
-	const passwordMinLength = 6;
-
-	const handleEmailChange = (email) => {
-		setEmailReg(email);
-		setIsEmailValid(emailRegex.test(email));
-	};
-
-	const handlePasswordChange = (password) => {
-		setPwdReg(password);
-		setIsPasswordValid(password.length >= passwordMinLength);
-	};
 	function handleLogin(loggedIn, user) {
 		dispatch({ type: 'LOGIN', payload: { loggedIn, user } });
 	};
@@ -91,17 +77,15 @@ function Login() {
 			<h2>Registration</h2>
 			<div className="input">
 				<label>Email</label>
-				{!isEmailValid &&<label>Invalid email</label>}
-				<input type="text" onChange={(e) => handleEmailChange(e.target.value)} />
+				<input type="text" onChange={(e) => { setEmailReg(e.target.value) }} />
 			</div>
 			<div className="input">
 				<label>Password</label>
-				{!isPasswordValid && <label>Please use a minium of 6 characters.</label>}
-				<input type="password" onChange={(e) => handlePasswordChange(e.target.value)} />
+				<input type="password" onChange={(e) => { setPwdReg(e.target.value) }} />
 			</div>
 
 
-			<button onClick={register} disabled={!isEmailValid || !isPasswordValid}>Register</button>
+			<button onClick={register}>Register</button>
 			<p>Already have an account?</p>
 			<button className="signup-button" onClick={() => setShow(false)}>Click here</button>
 
@@ -112,15 +96,13 @@ function Login() {
 				<h2>Login</h2>
 				<div className="input">
 					<label>Email</label>
-					{!isEmailValid && <label>Invalid email</label>}
 					<input type="text" onChange={(e) => { setEmailCheck(e.target.value) }} />
 				</div>
 				<div className="input">
 					<label>Password</label>
-					{!isPasswordValid && <label>Please use a minium of 6 characters.</label>}
 					<input type="password" onChange={(e) => { setPwdCheck(e.target.value) }} />
 				</div>
-				<button onClick={login} disabled={!isEmailValid || !isPasswordValid}>Login</button>
+				<button onClick={login}>Login</button>
 				<p>Need to register?</p>
 				<button className="signup-button" onClick={() => setShow(true)}>Click here</button>
 			</div>
