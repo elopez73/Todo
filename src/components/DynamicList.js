@@ -100,7 +100,7 @@ const DynamicList = () => {
             <div className={styles.content}>
                 <div className={styles.sidebar}>
                     <h3>Lists</h3>
-                    <ul className={styles.savedList}>
+                    <ul id='savedList' className={styles.savedList}>
                         {savedLists.map((list, index) => (
                             <li
                                 key={index}
@@ -112,11 +112,12 @@ const DynamicList = () => {
                                     <ul className={styles.savedSubList}>
                                         {list.items.map((item, itemIndex) => (
                                             <li key={itemIndex} className={styles.savedSubListItem}>
-                                            {item?.item_text}
+
                                                 <input
                                                     type="checkbox"
                                                     checked={item?.item_complete === 1}
                                                 />
+                                                {item?.item_text}
                                             </li>
                                         ))}
                                     </ul>

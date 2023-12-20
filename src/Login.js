@@ -22,15 +22,16 @@ function Login() {
 		try {
 			const res = await axios.post(`${api}/api/auth/register`, { email: EmailReg, hashpassword: pwdReg, })
 			handleLogin(true, res.data);
-			console.log(res.data);
+			window.location.reload();
 		} catch (err) {
 			console.log(err)
+			alert('Failed to register, please try again');
 		}
 
 	}
 
 	//LOGIN
-	const login = async() => {
+	const login = async () => {
 
 		await axios.post(`${api}/api/auth/${EmailCheck}/login`, {
 			email: EmailCheck,
