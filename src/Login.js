@@ -21,11 +21,22 @@ function Login() {
 
 		try {
 			const res = await axios.post(`${api}/api/auth/register`, { email: EmailReg, hashpassword: pwdReg, })
-			if(res?.data)
+			if(res.data)
 			{
 				try {
-					await login();
-					window.location.reload();
+					await axios.post(`${api}/api/auth/${EmailCheck}/login`, {
+						email: EmailCheck,
+						password: pwdCheck,
+					}).then((response) => {
+						if (response.data.message) {
+							handleLogin(response.data.message)
+						} else {
+							handleLogin(true, response.data.user);
+							sessionStorage.setItem("loggedIn", true);
+							sessionStorage.setItem("user", JSON.stringify(response.data.user[0]));
+							navigate("/mylists");
+						}
+					})
 				}
 				catch {
 					alert('Registration complete but login failed, please re-try.');
