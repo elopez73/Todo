@@ -21,8 +21,17 @@ function Login() {
 
 		try {
 			const res = await axios.post(`${api}/api/auth/register`, { email: EmailReg, hashpassword: pwdReg, })
-			handleLogin(true, res.data);
-			window.location.reload();
+			if(res?.data)
+			{
+				try {
+					await login();
+					window.location.reload();
+				}
+				catch {
+					alert('Registration complete but login failed, please re-try.');
+				}
+
+			}
 		} catch (err) {
 			console.log(err)
 			alert('Failed to register, please try again');
