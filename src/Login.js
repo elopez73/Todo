@@ -31,7 +31,7 @@ function Login() {
 						if (response.data.message) {
 							handleLogin(response.data.message)
 						} else {
-							window.location.reload();
+							
 							handleLogin(true, response.data.user);
 							sessionStorage.setItem("loggedIn", true);
 							sessionStorage.setItem("user", JSON.stringify(response.data.user[0]));
